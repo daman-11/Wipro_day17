@@ -1,3 +1,10 @@
+<!--This HTML page implements A11y using semantic elements, labels, alt text, ARIA attributes, and keyboard accessibility.
+    Semantic tags (header, nav, main, section, footer) help screen readers understand layout
+    Labels are linked to inputs for form accessibility
+    Alt text describes images for visually impaired users
+    Keyboard-friendly elements (button, a) ensure easy navigation
+    ARIA attributes improve accessibility where needed
+    Proper headings maintain logical structure --> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,25 +26,26 @@
 
 <body>
 
-<header>
+<header> <!--this is the header section -->
     <h1>Student Login Portal</h1>
 </header>
 
-<nav aria-label="Main navigation">
-    <a href="#home">Home</a>
-    <a href="#login">Login</a>
+<nav aria-label="Main navigation"><!--navigation links -->
+    <a href="#home">Home</a><!-- Home link -->
+    <a href="#login">Login</a></nav><!-- Login link -->
 </nav>
 
-<main id="home">
-    <section>
+<main id="home"><!--main content area -->
+    <section><!--welcome section -->
         <h2>Welcome</h2>
         <p>This page follows web accessibility (A11y) standards.</p>
-        <img src="profile.png" alt="Student profile icon">
+        <img src="profile.png" alt="Student profile icon"><!--image with alt text -->
+        <!--alt is the text description of the image for visually impaired users -->
     </section>
 
     <section id="login">
         <h2>Login Form</h2>
-
+        <!--Form with labels and inputs for accessibility -->
         <form>
             <label for="username">Username</label>
             <input type="text" id="username" aria-required="true">
