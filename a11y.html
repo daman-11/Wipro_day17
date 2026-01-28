@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accessible Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d36f9a;
+            color: #000000;
+        }
+        a, button, input {
+            margin: 8px 0;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Student Login Portal</h1>
+</header>
+
+<nav aria-label="Main navigation">
+    <a href="#home">Home</a>
+    <a href="#login">Login</a>
+</nav>
+
+<main id="home">
+    <section>
+        <h2>Welcome</h2>
+        <p>This page follows web accessibility (A11y) standards.</p>
+        <img src="profile.png" alt="Student profile icon">
+    </section>
+
+    <section id="login">
+        <h2>Login Form</h2>
+
+        <form>
+            <label for="username">Username</label>
+            <input type="text" id="username" aria-required="true">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" aria-required="true">
+
+            <button type="submit" aria-label="Submit login form">Login</button>
+        </form>
+    </section>
+</main>
+
+<footer>
+    <p>© 2026 Student Portal</p>
+</footer>
+
+</body>
+</html>
