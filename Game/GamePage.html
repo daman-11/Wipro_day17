@@ -1,3 +1,10 @@
+<!-- 
+This project is a Memory Card Game developed using HTML, CSS, and JavaScript.
+HTML is used to structure the game layout and elements.
+CSS is used for styling, animations, and responsive design.
+JavaScript handles the game logic such as card flipping, matching, move counting,
+and displaying the win message when all cards are matched.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -121,97 +128,97 @@
 </div>
 
 <script>
-  let matchedPairs = 0;
+  let matchedPairs = 0;// Track matched pairs
   const symbols = ['🍎','🍌','🍇','🍓','🍒','🍍','🥝','🍉'];
-  let cards = [...symbols, ...symbols];
-  let firstCard = null;
-  let secondCard = null;
-  let lockBoard = false;
-  let moves = 0;
+  let cards = [...symbols, ...symbols];// Duplicate symbols for pairs
+  let firstCard = null;// Track first flipped card
+  let secondCard = null;// Track second flipped card
+  let lockBoard = false;// Prevent further clicks during checks
+  let moves = 0;// Track number of moves
 
-  const gameBoard = document.getElementById('game');
-  const movesText = document.getElementById('moves');
+  const gameBoard = document.getElementById('game');//  Game board container
+  const movesText = document.getElementById('moves');// Moves display element
 
-  function shuffle(array) {
-    return array.sort(() => Math.random() - 0.5);
+  function shuffle(array) {// Shuffle cards using Fisher-Yates algorithm
+    return array.sort(() => Math.random() - 0.5);// Simple shuffle
   }
 
-  function createBoard() {
+  function createBoard() {// Create game board
     gameBoard.innerHTML = '';
     shuffle(cards);
-    moves = 0;
-    movesText.textContent = moves;
+    moves = 0;// Reset move count
+    movesText.textContent = moves;// Reset moves display
 
-    cards.forEach(symbol => {
-      const card = document.createElement('div');
+    cards.forEach(symbol => {// Create card elements
+      const card = document.createElement('div');// Card element
       card.classList.add('card');
       card.dataset.symbol = symbol;
       card.addEventListener('click', flipCard);
-      gameBoard.appendChild(card);
+      gameBoard.appendChild(card);// Add card to board
     });
   }
 
-  function flipCard() {
-    if (lockBoard || this === firstCard) return;
+  function flipCard() {// Handle card flip
+    if (lockBoard || this === firstCard) return;// Prevent invalid flips
 
-    this.classList.add('flipped');
+    this.classList.add('flipped');// Show card
     this.textContent = this.dataset.symbol;
 
-    if (!firstCard) {
+    if (!firstCard) {// First card flipped
       firstCard = this;
       return;
     }
 
-    secondCard = this;
+    secondCard = this;// Second card flipped
     moves++;
     movesText.textContent = moves;
-    checkMatch();
+    checkMatch();// Check for match
   }
 
-  function checkMatch() {
+  function checkMatch() {// Check if flipped cards match
     if (firstCard.dataset.symbol === secondCard.dataset.symbol) {
       firstCard.classList.add('matched');
       secondCard.classList.add('matched');
-      matchedPairs++;
+      matchedPairs++;// Increment matched pairs
 
-      if (matchedPairs === symbols.length) {
-        showWinMessage();
+      if (matchedPairs === symbols.length) {// All pairs matched
+        showWinMessage();// Show win message
       }
 
-      resetTurn();
-    } else {
+      resetTurn();// Reset for next turn
+    } else {// No match
       lockBoard = true;
       setTimeout(() => {
         firstCard.classList.remove('flipped');
         secondCard.classList.remove('flipped');
         firstCard.textContent = '';
         secondCard.textContent = '';
-        resetTurn();
-      }, 1000);
+        resetTurn();// Reset for next turn
+      }, 1000);// Flip back after delay
     }
   }
 
-  function resetTurn() {
-    [firstCard, secondCard] = [null, null];
-    lockBoard = false;
+  function resetTurn() {// Reset turn variables
+    [firstCard, secondCard] = [null, null];// Clear flipped cards
+    lockBoard = false;//    Unlock board
   }
 
-  function resetGame() {
+  function resetGame() {// Reset game state
     firstCard = null;
     secondCard = null;
     lockBoard = false;
     createBoard();
     matchedPairs = 0;
-    document.getElementById("winMessage").style.display = "none";
+    document.getElementById("winMessage").style.display = "none";// Hide win message
 
   }
 
-  function showWinMessage() {
-    document.getElementById("finalMoves").textContent = moves;
-    document.getElementById("winMessage").style.display = "block";
+  function showWinMessage() {// Display win message
+    document.getElementById("finalMoves").textContent = moves;// Show total moves
+    document.getElementById("winMessage").style.display = "block";// Show win message
   }
 
-  createBoard();
+  createBoard();// Initialize game board on load
 
 </script>
 
